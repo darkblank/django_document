@@ -1,27 +1,13 @@
+# ForeignKey로 2개의 class를 연결
 from django.db import models
 
-
-# Create your models here.
-# choice 실습
-class Person(models.Model):
-    SHIRT_SIZES = (
-        ('S', 'Small'),
-        ('M', 'Medium'),
-        ('L', 'Large'),
-    )
-    name = models.CharField(max_length=60)
-    shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)
+__all__ = (
+    'Manufacturer',
+    'Car',
+    'User'
+)
 
 
-# primary_key를 "id"가 아닌 다른 값으로 쓰고싶을 때
-class Fruit(models.Model):
-    name = models.CharField(
-        max_length=100,
-        primary_key=True
-    )
-
-
-# ForeignKey로 2개의 class를 연결
 class Manufacturer(models.Model):
     name = models.CharField(max_length=50)
 

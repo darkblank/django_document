@@ -20,6 +20,7 @@ class Group(models.Model):
     members = models.ManyToManyField(
         Idol,
         through='Membership',
+        through_fields=('group', 'idol'),
     )
 
     def __str__(self):
@@ -27,8 +28,9 @@ class Group(models.Model):
 
 
 class Membership(models.Model):
-    idol = models.ForeignKey(Idol, on_delete=models.CASCADE)
+    idol = models.ForeignKey(Idol, on_delete=models.CASCADE, related_name='membership_set')
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    recommender = models.ForeignKey(Idol, null=True, on_delete=models.SET_NULL, related_name='recommend_membership_set')
     joined_date = models.DateField()
     is_active = models.BooleanField()
 

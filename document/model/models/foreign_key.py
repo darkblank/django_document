@@ -27,3 +27,9 @@ class Car(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=30)
     teacher = models.ForeignKey('self', on_delete=models.SET_NULL, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.teacher == self:
+            print('teacher cannot self')
+        else:
+            super().save(*args, **kwargs)

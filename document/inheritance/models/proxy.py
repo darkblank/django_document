@@ -24,8 +24,13 @@ class SupporterManager(models.Manager):
         return super().get_queryset().filter(champion_type='supporter')
 
 
+class MidlinerManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(champion_type='magician')
+
+
 class Supporter(Champion):
-    objects = SupporterManager
+    objects = SupporterManager()
 
     class Meta:
         proxy = True
@@ -35,6 +40,8 @@ class Supporter(Champion):
 
 
 class Midliner(Champion):
+    objects = MidlinerManager()
+
     class Meta:
         proxy = True
 

@@ -1,4 +1,4 @@
-ngogirls Tutorial
+# djangogirls Tutorial
 
 ## requirements
 
